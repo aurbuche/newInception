@@ -1,0 +1,71 @@
+version: "3.8"
+services:
+
+    nginx:
+        networks:
+            inception:
+                ipv4_address: 172.20.0.2
+        build: nginx
+        image: ./requirements/nginx:local
+        container_name: Nginx
+        volumes:
+            - wpdata:/var/www/wordpress
+        ports:
+            - "443:443"
+        restart: always
+
+    wordpress:
+        networks:
+            inception:
+                ipv4_address: 172.20.0.3
+        volumes:
+            - wpdata:/var/www/wordpress
+        build:
+            context: ./requirements/wordpress
+            args:
+                - WP_USER=${WP_USER}
+                - WP_DATABASE=${WP_DATABASE}
+                - WP_PASSWORD=${WP_PASSWORD}
+                - HOSTNAME=${HOSTNAME}
+        image: ./requirements/wordpress:local
+        container_name: Wordpress
+        restart: always
+
+    mariadb:
+        networks:
+            inception:
+                ipv4_address: 172.20.0.4
+        volumes:
+            - "dbdata:/var/lib/mysql"
+        build:
+            context: ./requirements/mariadb
+            args:
+                - DB_PASSWORD=${DB_PASSWORD}
+                - WP_USER=${WP_USER}
+                - WP_DATABASE=${WP_DATABASE}
+                - WP_PASSWORD=${WP_PASSWORD}
+                - HOSTNAME=${HOSTNAME}
+                - SUPER_USER_PASSWORD=${SUPER_USER_PASSWORD}
+                - USER_PASSWORD=${USER_PASSWORD}
+        image: ./requirements/mariadb:local
+        container_name: Mariadb
+        restart: always
+
+networks:
+    inception:
+        ipam:
+            config:
+                - subnet: "172.20.0.0/24"
+volumes:
+    dbdata:
+        driver: local
+        driver_opts:
+            type: none
+            device: /home/aurbuche/data/db
+            o: bind
+    wpdata:
+        driver: local
+        driver_opts:
+            type: none
+            device: /home/aurbuche/data/wordpress
+            o: bind
