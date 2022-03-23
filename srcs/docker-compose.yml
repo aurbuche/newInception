@@ -6,7 +6,7 @@ services:
             inception:
                 ipv4_address: 172.20.0.2
         build: ./requirements/nginx
-        image: ./requirements/nginx:local
+        image: nginx:local
         container_name: Nginx
         volumes:
             - wpdata:/var/www/wordpress
@@ -27,7 +27,7 @@ services:
                 - WP_DATABASE=${WP_DATABASE}
                 - WP_PASSWORD=${WP_PASSWORD}
                 - HOSTNAME=${HOSTNAME}
-        image: ./requirements/wordpress:local
+        image: wordpress:local
         container_name: Wordpress
         restart: always
 
@@ -47,7 +47,7 @@ services:
                 - HOSTNAME=${HOSTNAME}
                 - SUPER_USER_PASSWORD=${SUPER_USER_PASSWORD}
                 - USER_PASSWORD=${USER_PASSWORD}
-        image: ./requirements/mariadb:local
+        image: mariadb:local
         container_name: Mariadb
         restart: always
 
