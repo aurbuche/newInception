@@ -11,21 +11,21 @@ all: run
 run: 
 	sudo mkdir -p /home/aurbuche/data/wordpress
 	sudo mkdir -p /home/aurbuche/data/db
-	$(ENGINE) -f $(SRC) up --build
+	sudo $(ENGINE) -f $(SRC) up --build
 
 detach: 
 	sudo mkdir -p /home/aurbuche/data/wordpress
 	sudo mkdir -p /home/aurbuche/data/db
-	$(ENGINE) -f $(SRC) up -d --build
+	sudo $(ENGINE) -f $(SRC) up -d --build
 
 ps:
-	$(ENGINE) -f $(SRC) ps
+	sudo $(ENGINE) -f $(SRC) ps
 
 top:
-	$(ENGINE) -f $(SRC) top
+	sudo $(ENGINE) -f $(SRC) top
 
 fclean:
-	$(ENGINE) -f $(SRC) down --rmi all -v
+	sudo $(ENGINE) -f $(SRC) down --rmi all -v
 	sudo rm -rf /home/aurbuche/data/
 
 .PHONY: run detach ps top fclean 

@@ -1,11 +1,11 @@
-version: "3.8"
+version: "3"
 services:
 
     nginx:
         networks:
             inception:
                 ipv4_address: 172.20.0.2
-        build: nginx
+        build: ./requirements/nginx
         image: ./requirements/nginx:local
         container_name: Nginx
         volumes:
