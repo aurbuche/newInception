@@ -3,8 +3,8 @@
 #install Wordpress
 mkdir /var/www/
 wget https://wordpress.org/latest.tar.gz
-tar xvf wordpress-5.9.2.tar.gz
-rm -rf wordpress-5.9.2.tar.gz
+tar xvf latest.tar.gz
+rm -rf latest.tar.gz
 mv wordpress/ /var/www/
 
 #Install configuration file for PHP
@@ -16,6 +16,7 @@ sed -i "s/username_here/${WP_USER}/g" wp-config-sample.php
 sed -i "s/password_here/${WP_PASSWORD}/g" wp-config-sample.php
 sed -i "s/localhost/${HOSTNAME}/g" wp-config-sample.php
 sed -i "s/database_name_here/${WP_DATABASE}/g" wp-config-sample.php
+echo ${WP_USER} '|' ${WP_PASSWORD} '|' ${WP_DATABASE} '|' ${HOSTNAME}
 mv	wp-config-sample.php wp-config.php
 
 #Launch php

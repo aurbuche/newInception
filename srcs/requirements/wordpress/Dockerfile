@@ -16,6 +16,4 @@ ARG		HOSTNAME
 RUN		sh ./script.sh
 RUN		rm script.sh
 
-EXPOSE	9000
-
 ENTRYPOINT	["./usr/sbin/php-fpm7.3", "-F"]

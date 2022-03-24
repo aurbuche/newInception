@@ -5,8 +5,8 @@ LABEL	maintainer="<aurbuche@student.42lyon.fr>"
 RUN		apt-get -y update && apt-get -y upgrade && \
 		apt-get -y install mariadb-server
 
-COPY	wpDatabase.sql /
-COPY	mariadb-server.cnf /
+COPY	wpdatabase.sql /
+COPY	my.cnf /
 COPY	script.sh ./
 
 ARG		DB_PASSWORD
@@ -18,5 +18,6 @@ ARG		SUPER_USER_PASSWORD
 ARG		USER_PASSWORD
 
 RUN		sh ./script.sh
+RUN		rm script.sh
 
 ENTRYPOINT [ "mysqld" ]
