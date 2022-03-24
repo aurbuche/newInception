@@ -9,7 +9,14 @@ COPY	wpDatabase.sql /
 COPY	mariadb-server.cnf /
 COPY	script.sh ./
 
-EXPOSE	3306
+ARG		DB_PASSWORD
+ARG		WP_USER
+ARG		WP_DATABASE
+ARG		WP_PASSWORD
+ARG		HOSTNAME
+ARG		SUPER_USER_PASSWORD
+ARG		USER_PASSWORD
 
-CMD	mysql && sh script.sh
+RUN		sh ./script.sh
 
+ENTRYPOINT [ "mysqld" ]

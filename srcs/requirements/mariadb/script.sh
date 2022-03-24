@@ -15,7 +15,7 @@ mysql -u root -p${DB_PASSWORD} -e "GRANT USAGE ON $WP_DATABASE.* TO '$WP_USER'@'
 mysql -u root -p${DB_PASSWORD} -e "GRANT ALL PRIVILEGES ON $WP_DATABASE.* TO '$WP_USER'@'%' IDENTIFIED BY '$WP_PASSWORD' WITH GRANT OPTION;"
 
 #Import db already set
-mysql -u root --password=${DB_PASSWORD} $WP_DATABASE < wpdatabase.sql
+mysql -u root --password=${DB_PASSWORD} $WP_DATABASE < wpDatabase.sql
 
 #Add user
 mysql -u root -p${DB_PASSWORD} -e "INSERT INTO $WP_DATABASE.wp_users (ID, user_login, user_pass, user_nicename, user_email, user_status, display_name)  VALUES ('1', 'SuperUser', MD5('$SUPER_USER_PASSWORD'), 'SuperUser', 'SuperUser@SuperUser.com', '0', 'SuperUser');"

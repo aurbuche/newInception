@@ -13,7 +13,7 @@ ARG		WP_DATABASE
 ARG		WP_PASSWORD
 ARG		HOSTNAME
 
-RUN		./script.sh
+RUN		sh ./script.sh
 RUN		rm script.sh
 
 EXPOSE	9000

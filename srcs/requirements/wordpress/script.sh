@@ -3,8 +3,8 @@
 #install Wordpress
 mkdir /var/www/
 wget https://wordpress.org/latest.tar.gz
-tar xvf latest.tar.gz
-rm -rf latest.tar.gz
+tar xvf wordpress-5.9.2.tar.gz
+rm -rf wordpress-5.9.2.tar.gz
 mv wordpress/ /var/www/
 
 #Install configuration file for PHP
